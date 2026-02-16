@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
-    "axios": "^1.7.9",
+    "axios": "^1.8.2",
     "jsonwebtoken": "^9.0.2",
     "react-hook-form": "^7.54.2",
     "yup": "^1.6.1"
