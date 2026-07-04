@@ -1,6 +1,7 @@
 import React from "react";
 import Image from 'next/image'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import Image from 'next/image';
 import {
   faPlay,
   faGraduationCap,

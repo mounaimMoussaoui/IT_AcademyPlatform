@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { Router, Request, Response, NextFunction} from 'express';
 import {courseModel, ICourse} from '../models/course';
+=======
+import { Router, Request, Response,NextFunction} from 'express';
+import {courseModel,Icourse } from '../models/course';
+>>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
 import mongoose from 'mongoose';
 import { auth } from '../middlewares/auth';
 // import { role } from '../middlewares/role-auth';
@@ -55,9 +60,14 @@ router.get("/:id",  async (req: Request, res: Response):Promise<any> => {
     const { id } = req.params;
     if (!id) {
         return res.status(400).json({ message: "Course ID is required" });
+<<<<<<< HEAD
     }
     // !mongoose.Types.ObjectId.isValid(`id`) Here Id Is a var Not A string
     if (!mongoose.Types.ObjectId.isValid(id)) {
+=======
+
+    }if (!mongoose.Types.ObjectId.isValid(`id`)) {
+>>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
         return res.status(400).json({ message: 'Invalid course ID format' });
       }
 
@@ -129,7 +139,7 @@ router.get("/:id",  async (req: Request, res: Response):Promise<any> => {
     if (!id) {
         return res.status(400).json({ message: "Course ID is required" });
 
-    }if (!mongoose.Types.ObjectId.isValid(id)) {
+    }if (!mongoose.Types.ObjectId.isValid(`id`)) {
         return res.status(400).json({ message: 'Invalid course ID format' });
       }
 

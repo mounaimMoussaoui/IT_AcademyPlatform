@@ -26,10 +26,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+<<<<<<< HEAD
       <body className={`${geistSans.variable} bg-[#1E1E1E] text-white ${geistMono.variable} antialiased` }>
         <Navigation/>
           {children}
         <Footer/>
+=======
+      <body
+        className={`${geistSans.variable} bg-[#1E1E1E] text-white ${geistMono.variable} antialiased` }
+        
+      >
+
+        
+          <Navigation/>
+            {children}
+          <Footer/>
+        
+>>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
       </body>
     </html>
   );

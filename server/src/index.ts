@@ -1,5 +1,9 @@
 import express from 'express';
+<<<<<<< HEAD
 import {connection, client} from './config/database';
+=======
+import {connection,client} from './config/database';
+>>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
 import admin from './routes/adminRoute';
 import user from './routes/userRoute';
 import course from './routes/courseRoute';
@@ -10,7 +14,11 @@ import dotenv from "dotenv";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 import cors from 'cors';
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
 dotenv.config();
 
 const app = express();
@@ -44,6 +52,17 @@ app.use('/user', user);
 app.use('/course', course);
 app.use('/quizzes', quiz);
 app.use('/questions', question);
+
+async function bootstrap() {
+  await client.connect();     // connect native MongoClient (for better-auth)
+  await connection();         // connect Mongoose (for your models)
+
+  app.listen(process.env.PORT || 8000, () => {
+    console.log(`Server running on port ${process.env.PORT || 8000}`);
+  });
+}
+
+bootstrap();
 
 async function bootstrap() {
   await client.connect();     // connect native MongoClient (for better-auth)

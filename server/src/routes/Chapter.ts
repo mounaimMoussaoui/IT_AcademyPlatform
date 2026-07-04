@@ -1,8 +1,13 @@
 import { Router, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { chapterModel } from '../models/chapter';
+<<<<<<< HEAD
 // import {role} from '../middlewares/role_auth';
 // import { auth } from '../middlewares/auth';
+=======
+import {role} from '../middlewares/roleauth';
+import { auth } from '../middlewares/auth';
+>>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
 
 
 
@@ -16,7 +21,11 @@ router.get("/getChapter/:courseId",
   async (req: Request, res: Response): Promise<void> => {
   const { courseId } = req.params;
 
+<<<<<<< HEAD
   if (!mongoose.Types.ObjectId.isValid(`${courseId}`)) {
+=======
+  if (!mongoose.Types.ObjectId.isValid(`courseId`)) {
+>>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
     res.status(400).json({ message: "Invalid course ID format" });
     return;
   }
