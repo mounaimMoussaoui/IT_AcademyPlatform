@@ -32,21 +32,7 @@
     "mongodb": "^6.21.0",
     "mongoose": "^8.15.1",
     "next": "15.1.11",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
-    "next-auth": "^4.24.12",
-=======
     "next-auth": "^5.0.0-beta.30",
->>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
-<<<<<<< HEAD
-=======
-=======
-    "next-auth": "^5.0.0-beta.30",
->>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
->>>>>>> main
     "next-video": "^2.5.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
