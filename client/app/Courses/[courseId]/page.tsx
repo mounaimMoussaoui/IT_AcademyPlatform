@@ -7,14 +7,16 @@ import type { CourseData } from '@/app/types/course'
 
 
 export default async function CoursePage({ params }: { params: Promise<{ courseId: string }> }) {
-  const  {courseId}  = await params
-  const courses: CourseData[] = await fetchCourseById(courseId).catch(() => [])
-  const datacourse: CourseData | null = courses[0] ?? null
+  const  {courseId}  = await params;
+  const courses: CourseData | null = await fetchCourseById(courseId);
+  const datacourse: CourseData | null = courses ? courses : null;
+
+  // console.log('Fetched course data from :', courses, datacourse);
 
   if (!datacourse) {
     return (
-      <div className="p-8 text-center">
-        <p className="text-red-500">Course not found.</p>
+      <div className="p-8 text-center min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-black flex items-center justify-center">
+        <p className="text-white text-2xl font-bold">Course not found.</p>
       </div>
     )
   }
@@ -24,22 +26,22 @@ export default async function CoursePage({ params }: { params: Promise<{ courseI
       <div className="flex flex-col md:flex-row gap-8">
         <div className="flex-1">
           <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-4">{datacourse.Namecourse}</h1>
-            <p className="text-lg text-white mb-6">{datacourse.DescriptionCourse}</p>
-            <Link href={`/Courses/${datacourse.id}/Lesson/${datacourse.id}`}>
+            <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-4">{datacourse?.Namecourse}</h1>
+            <p className="text-lg text-white mb-6">{datacourse?.DescriptionCourse}</p>
+            <Link href={`/Courses/${datacourse?.id}/Lesson/${datacourse?.id}`}>
               <Button button="Get Started"  />
             </Link>
           </div>
 
           <div className="mb-8 bg-black p-6 rounded-lg shadow-md border border-gray-200">
             <h2 className="text-2xl font-semibold text-red-600 mb-4">Overview</h2>
-            <p className="text-white">{datacourse.shortDescription ?? 'No overview available.'}</p>
+            <p className="text-white">{datacourse?.shortDescription ?? 'No overview available.'}</p>
           </div>
 
           <div className="bg-black p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold text-red-600 mb-4">What you will learn</h2>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {datacourse.learningOutcomes.map((o, i) => (
+              {datacourse?.learningOutcomes.map((o, i) => (
                 <li key={i} className="flex items-start">
                   <svg className="h-5 w-5 text-red-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -55,8 +57,8 @@ export default async function CoursePage({ params }: { params: Promise<{ courseI
           <aside className="bg-black rounded-xl shadow-md overflow-hidden sticky top-6 border border-gray-200">
             <div className="relative h-48 w-full border-b border-gray-200">
               <Image
-                src={datacourse.imageUrl ?? '/default.png'}
-                alt={datacourse.Namecourse}
+                src={datacourse?.imageUrl || '/default.png'}
+                alt={`Course: ${datacourse?.Namecourse}`}
                 fill
                 className="object-cover"
               />
@@ -66,27 +68,27 @@ export default async function CoursePage({ params }: { params: Promise<{ courseI
               <div className="space-y-3">
                 <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-white">Duration</span>
-                  <span className="text-red-600 font-medium">{datacourse.duration} hours</span>
+                  <span className="text-red-600 font-medium">{datacourse?.duration} hours</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-white">Level</span>
-                  <span className="text-red-600 font-medium">{datacourse.level}</span>
+                  <span className="text-red-600 font-medium">{datacourse?.level}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-white">Category</span>
-                  <span className="text-red-600 font-medium">{datacourse.category}</span>
+                  <span className="text-red-600 font-medium">{datacourse?.category}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-white">Lessons</span>
-                  <span className="text-red-600 font-medium">{datacourse.totalLessons}</span>
+                  <span className="text-red-600 font-medium">{datacourse?.totalLessons}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-white">Quizzes</span>
-                  <span className="text-red-600 font-medium">{datacourse.totalQuizzes}</span>
+                  <span className="text-red-600 font-medium">{datacourse?.totalQuizzes}</span>
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-white">Enrolled</span>
-                  <span className="text-red-600 font-medium">{datacourse.enrollments}</span>
+                  <span className="text-red-600 font-medium">{datacourse?.enrollments}</span>
                 </div>
               </div>
             </div>

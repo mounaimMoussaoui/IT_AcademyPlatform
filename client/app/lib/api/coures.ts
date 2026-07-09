@@ -99,14 +99,16 @@ export async function fetchHomeCourseFromExpr(): Promise<CourseData[]> {
 }
 
 /// get course by id
-export async function fetchCourseById(id: string): Promise<CourseData[]> {
-  console.log('Fetching course with id:', id);
+export async function fetchCourseById(id: string): Promise<CourseData | null> {
+  // console.log('Fetching course with id:', id);
 
   try {
-    return await apiFetch<CourseData[]>(`/course/${id}`);
+    const data = await apiFetch<CourseData>(`/course/${id}`);
+    // console.log('Fetched course data:', data);
+    return data;
   } catch (error) {
     console.error(`Error fetching course with id ${id}:`, error);
-    return [];
+    return null;
   }
 }
 
