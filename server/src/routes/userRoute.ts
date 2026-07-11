@@ -1,14 +1,14 @@
 import express from "express";
 import { userModel } from "../models/userModel";
 import { Request, Response, NextFunction } from "express";
-import { role } from "../middlewares/roleauth";
+import { role } from "../middlewares/role_auth";
 import { auth } from "../middlewares/auth";
 
 
 const router = express.Router();
 
 router.get(
-  "/getuser",
+  "/getUsername/:id",
   auth,
   role("admin"),
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -24,7 +24,7 @@ router.get(
 );
 
 router.get(
-  "/getusername/:id",
+  "/getUsername/:id",
   auth,
   role("admin"),
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {

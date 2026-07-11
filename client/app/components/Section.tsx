@@ -1,10 +1,10 @@
 import React from "react";
 import Image from 'next/image'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 // import Image from 'next/image';
->>>>>>> MNchanges
+// >>>>>>> MNchanges
 import {
   faPlay,
   faGraduationCap,
@@ -67,8 +67,8 @@ const Hero = () => {
 
           {/* Right Column - Image */}
           <div className="relative">
-<<<<<<< HEAD
-=======
+{/* <<<<<<< HEAD
+======= */}
             <div className="relative z-10">
               <Image
                 loading="lazy"
@@ -79,7 +79,7 @@ const Hero = () => {
                 className="rounded-lg shadow-2xl"
               />
             </div>
->>>>>>> MNchanges
+{/* >>>>>>> MNchanges */}
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-techred rounded-lg transform rotate-12"></div>
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-techgray rounded-lg transform -rotate-12"></div>
           </div>

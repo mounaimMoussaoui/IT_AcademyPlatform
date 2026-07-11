@@ -14,13 +14,8 @@ import {
 
 
 
-<<<<<<< HEAD
-export default function ChapterPage({ courseId }: { courseId: string }) {
 
-
-=======
 export default function ChapterPage({ params }: { params: string }) {
->>>>>>> MNchanges
   const [chaptersData, setChaptersData] = useState<ChapterData[]>([]);
   const [selectedChapter, setSelectedChapter] = useState<ChapterData | null>(null);
   const [currentChapter, setCurrentChapter] = useState<string>("");
@@ -32,17 +27,10 @@ export default function ChapterPage({ params }: { params: string }) {
   const [activeChapter, setActiveChapter] = useState({"text": false, "file": false, "video": false});
 
   useEffect(() => {
-<<<<<<< HEAD
-      const token = localStorage.getItem("token");
-    axios
-      .get<ChapterData[]>(`${process.env.NEXT_PUBLIC_EXPRESS_URL}/chapter/getChapter/${courseId}`,
-         {
-=======
       const token = localStorage.getItem("token"); // or however you store the token
 
       axios.get<ChapterData[]>(`${process.env.NEXT_PUBLIC_EXPRESS_URL}/chapter/getChapter/${params}`,
         {
->>>>>>> MNchanges
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -54,13 +42,9 @@ export default function ChapterPage({ params }: { params: string }) {
       })
       .catch((error) => {
         console.log(error);
-<<<<<<< HEAD
-      })
-  }, [courseId]);
-=======
+
       });
   }, [params]);
->>>>>>> MNchanges
 
 
   function onSelect(chapter: ChapterData, type: "text" | "file" | "video") {

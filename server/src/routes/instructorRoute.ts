@@ -2,14 +2,14 @@ import { Router, Request, Response } from "express";
 import { db } from "../config/database";
 import { courseModel } from "../models/course";
 import { auth } from "../middlewares/auth";
-import { role } from "../middlewares/roleauth";
+import { role } from "../middlewares/role_auth";
 
 const router = Router();
 
-router.get("/my-courses", auth, role("instrator"), async (req: Request, res: Response): Promise<void> => {
+router.get("/my-courses", auth, role("Instructor"), async (req: Request, res: Response): Promise<void> => {
   try {
     const courses = await courseModel
-      .find({ instructorId: req.user?.id })
+      .find({ Instructor: req.user?.id })
       .select("-__v")
       .lean();
     res.status(200).json(courses);
@@ -23,13 +23,13 @@ router.get("/all", auth, role("admin"), async (req: Request, res: Response): Pro
   try {
     const instructors = await db
       .collection("user")
-      .find({ role: "instrator" })
+      .find({ role: "Instructor" })
       .project({ name: 1, email: 1, role: 1, about: 1, createdAt: 1 })
       .toArray();
 
     const courses = await courseModel
       .find()
-      .select("Namecourse Instructor InstructorInformation category level duration price isPublished createdAt")
+      .select("NameCourse Instructor InstructorInformation category level duration price isPublished createdAt")
       .lean();
 
     res.status(200).json({ instructors, courses });

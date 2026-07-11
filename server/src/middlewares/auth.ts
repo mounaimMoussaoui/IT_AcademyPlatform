@@ -12,7 +12,6 @@ declare module "express-serve-static-core" {
 
 export const auth = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-<<<<<<< HEAD
     const session = await betterAuth.api.getSession({
       headers: req.headers as Record<string, string>,
     });
@@ -26,11 +25,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction): Pro
       id: session.user.id,
       role: (session.user as any).role || "user",
     };
-=======
-    const decoded = jwt.verify(token, JWT_SECRET) as any ;
-    req.user = decoded;
-    console.log(decoded)
->>>>>>> MNchanges
+
 
     next();
   } catch (err) {

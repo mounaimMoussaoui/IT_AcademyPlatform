@@ -3,24 +3,8 @@ import { fetchLessonById } from '@/app/lib/api/lesson'
 import {  BookOpen, Clock, Users, FileText, Award, Brain, CheckCircle } from 'lucide-react'
 import type { LessonData } from '@/app/types/lesson'
 import Chapter from '@/app/components/Chapter'
-// import Quizzes from '@/app/components/Quizzes'
 
 
-<<<<<<< HEAD
-
-export default async function LessonPage({ params }: { params: Promise<{ courseId: string; lessonId: string }> }) {
-  const { courseId, lessonId } = await params
-  const lessons: LessonData[] = await fetchLessonById(lessonId).catch(() => [])
-  const lesson: LessonData | null = lessons[0] ?? null
-
- if (!lesson) {
-   return (
-     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-black flex items-center justify-center">
-       <div className="text-red-500 text-xl">Lesson not </div>
-     </div>
-   )
- }
-=======
 export default async function LessonPage({ params }: { params: { courseId: string } }) {
   const { courseId } = await params;
   let lesson: LessonData[] | null = null;
@@ -38,14 +22,12 @@ if (!lesson) {
     </div>
   )
 }
->>>>>>> MNchanges
+// >>>>>>> MNchanges
 
  //Since this is SSR, we render progress and completed state as 0 and 0-of-total.
   const progress = 0;
   const completedCount = 0;
   const firstLesson = Array.isArray(lesson) ? lesson[0] : lesson;
-
-  // console.log(firstLesson, lesson)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-black py py-9">
@@ -122,12 +104,7 @@ if (!lesson) {
           <div className="bg-black/60 backdrop-blur-md rounded-2xl border border-red-500/30 overflow-hidden">
 
 
-<<<<<<< HEAD
-             
-             <Chapter courseId={courseId}/>
-=======
-            <Chapter params={courseId} />
->>>>>>> MNchanges
+            <Chapter params={courseId} /> 
 
               <div className="p-6 mt-6">
                 <ul className="space-y-4 flex items-center justify-between gap-4 flex-wrap">

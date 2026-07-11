@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 import { Router, Request, Response, NextFunction } from "express";
-import { courseModel, Icourse } from "../models/course";
+import { courseModel, ICourse } from "../models/course";
 import mongoose from "mongoose";
 import { auth } from "../middlewares/auth";
 import { role } from "../middlewares/roleauth";
@@ -14,7 +13,7 @@ router.get("/CourseCard", async (req, res) => {
     const courses = await courseModel
       .find()
       .select(
-        "_id Namecourse category shortDescription imageUrl duration level rating",
+        "_id NameCourse category shortDescription imageUrl duration level rating",
       )
       .lean();
     const mapped = courses.map((c) => ({ id: c._id, ...c }));
@@ -30,7 +29,7 @@ router.get("/CourseCardHomepage", async (req, res) => {
     const courses = await courseModel
       .find()
       .select(
-        "_id Namecourse category shortDescription imageUrl duration level rating",
+        "_id NameCourse category shortDescription imageUrl duration level rating",
       )
       .limit(6)
       .lean();
@@ -63,7 +62,7 @@ router.get("/course/CourseCard", async (req, res) => {
       .find()
       .limit(1)
       .select(
-        "_id Namecourse category shortDescription imageUrl duration level rating",
+        "_id NameCourse category shortDescription imageUrl duration level rating",
       );
     res.status(200).send(courses);
   } catch (error) {
@@ -93,7 +92,7 @@ router.get(
 
       const {
         _id,
-        Namecourse,
+        NameCourse,
         DescriptionCourse,
         category,
         level,
@@ -109,14 +108,14 @@ router.get(
         enrollments,
         videoUrl,
         text,
-        quize,
+        quiz,
         createdAt,
         updatedAt,
-      } = Course.toObject() as Icourse & { _id: mongoose.Types.ObjectId };
+      } = Course.toObject() as ICourse & { _id: mongoose.Types.ObjectId };
 
       res.status(200).json({
         id: _id,
-        Namecourse,
+        NameCourse,
         DescriptionCourse,
         category,
         level,
@@ -132,7 +131,7 @@ router.get(
         enrollments,
         videoUrl,
         text,
-        quize,
+        quiz,
         createdAt,
         updatedAt,
       });
@@ -163,24 +162,24 @@ router.get(
 
       const {
         _id,
-        Namecourse,
+        NameCourse,
         videoUrl,
         text,
-        quize,
+        quiz,
         totalLessons,
         totalQuizzes,
         enrollments,
         XpNumber,
         duration,
-      } = Lesson.toObject() as Icourse & { _id: mongoose.Types.ObjectId };
+      } = Lesson.toObject() as ICourse & { _id: mongoose.Types.ObjectId };
 
       res.status(200).json({
         id: _id,
-        Namecourse,
+        NameCourse,
         videoUrl: videoUrl ? videoUrl.map((v: any) => v.toString()) : [], // Convert ObjectId to string
         // Convert ObjectId to string for each field
         text: text ? text.map((t: any) => t.toString()) : [],
-        quize: quize ? quize.map((q: any) => q.toString()) : [],
+        quiz: quiz ? quiz.map((q: any) => q.toString()) : [],
         totalLessons,
         totalQuizzes,
         enrollments,
@@ -201,11 +200,11 @@ router.get(
 router.post(
   "/AddCourse",
   auth,
-  role("admin", "instrator"),
+  role("admin", "Instructor"),
   async (req, res) => {
     try {
       const {
-        Namecourse,
+        NameCourse,
         DescriptionCourse,
         shortDescription,
         category,
@@ -220,13 +219,13 @@ router.post(
         XpNumber,
         videoUrl,
         text,
-        quize,
+        quiz,
         Instructor,
         InstructorInformation,
       } = req.body;
 
       const course = new courseModel({
-        Namecourse,
+        NameCourse,
         DescriptionCourse,
         shortDescription,
         category,
@@ -241,7 +240,7 @@ router.post(
         XpNumber,
         videoUrl,
         text,
-        quize,
+        quiz,
         Instructor,
         InstructorInformation,
         instructorId: req.user?.id,
@@ -268,14 +267,14 @@ router.put("/UpdateCourse/:id", auth, async (req: Request, res: Response): Promi
     }
 
     const isAdmin = req.user?.role === "admin";
-    const isOwner = course.instructorId === req.user?.id;
+    const isOwner = course?.Instructor === req.user?.id;
     if (!isAdmin && !isOwner) {
       res.status(403).json({ message: "Access denied" });
       return;
     }
 
     const allowedFields = [
-      "Namecourse", "DescriptionCourse", "shortDescription", "category",
+      "NameCourse", "DescriptionCourse", "shortDescription", "category",
       "level", "imageUrl", "duration", "prerequisites", "learningOutcomes",
       "price", "isPublished", "XpNumber", "videoUrl", "text", "quize",
       "Instructor", "InstructorInformation",
@@ -308,7 +307,7 @@ router.delete("/DeleteCourse/:id", auth, async (req: Request, res: Response): Pr
     }
 
     const isAdmin = req.user?.role === "admin";
-    const isOwner = course.instructorId === req.user?.id;
+    const isOwner = course.Instructor === req.user?.id;
     if (!isAdmin && !isOwner) {
       res.status(403).json({ message: "Access denied" });
       return;
@@ -321,23 +320,6 @@ router.delete("/DeleteCourse/:id", auth, async (req: Request, res: Response): Pr
     res.status(500).json({ message: "Internal server error" });
   }
 });
-
-export default router;
-=======
-<<<<<<< HEAD
-import { Router, Request, Response, NextFunction} from 'express';
-import {courseModel, ICourse} from '../models/course';
-=======
-import { Router, Request, Response,NextFunction} from 'express';
-import {courseModel,Icourse } from '../models/course';
->>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
-import mongoose from 'mongoose';
-import { auth } from '../middlewares/auth';
-// import { role } from '../middlewares/role-auth';
-
-// this is a cart course 
-
-const router =Router();
 
 router.get("/CourseCard", async(req, res) => {
     try{
@@ -385,15 +367,9 @@ router.get("/course/CourseCard", async(req, res) => {
 router.get("/:id",  async (req: Request, res: Response):Promise<any> => {
     const { id } = req.params;
     if (!id) {
-        return res.status(400).json({ message: "Course ID is required" });
-<<<<<<< HEAD
-    }
+        return res.status(400).json({ message: "Course ID is required" });    }
     // !mongoose.Types.ObjectId.isValid(`id`) Here Id Is a var Not A string
     if (!mongoose.Types.ObjectId.isValid(id)) {
-=======
-
-    }if (!mongoose.Types.ObjectId.isValid(`id`)) {
->>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
         return res.status(400).json({ message: 'Invalid course ID format' });
       }
 
@@ -674,4 +650,3 @@ router.delete("/DeleteCourse/:id", auth, role("admin"), async (req, res) => {
 */
 
 export default router;
->>>>>>> MNchanges
