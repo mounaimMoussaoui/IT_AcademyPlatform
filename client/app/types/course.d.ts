@@ -23,7 +23,12 @@ export interface CourseData {
 
 export interface Course {
   _id: number;
+<<<<<<< HEAD
   Namecourse: string;
+=======
+  
+  NameCourse: string;
+>>>>>>> MNchanges
   DescriptionCourse: string;
   shortDescription?: string;
   category: string;
@@ -39,6 +44,7 @@ export interface Course {
   enrollments?: number;
   createdAt?: string;
   updatedAt?: string;
+<<<<<<< HEAD
   filters: string;
   modules: string[];
   price: "Free" | "Paid";
@@ -46,6 +52,24 @@ export interface Course {
   videoUrl?: string[];
   text?: string[];
   quize?: string[];
+=======
+  filters:string,
+  modules: Types.ObjectId[]; // References to module documents
+  prerequisites: string[];
+  learningOutcomes: string[];
+  rating: number; // rating of the course
+  price: "Free" | "Paid"; // type of the course
+  createdAt: Date; // Timestamp of creation
+  updatedAt: Date; // Timestamps for when the course was created and last updated
+  isPublished: boolean; // is the course published?
+  totalLessons: number; // Total number of lessons in the course
+  totalQuizzes: number; // Total number of quizzes in the course
+  enrollments: number; // number of enrollments
+  XpNumber: number; // XP number for the course
+  videoUrl?: Types.ObjectId[]; // video URL of the lesson
+  text?: Types.ObjectId[];
+  quiz?: Types.ObjectId[];
+>>>>>>> MNchanges
   InstructorInformation: string;
   Instructor: string;
   o: number;
