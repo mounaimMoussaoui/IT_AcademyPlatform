@@ -9,8 +9,7 @@ interface CoursesListProps {
 }
 
 export default function CoursesList({ courses }: CoursesListProps) {
-  const defaultImage =
-    'https://tolustar.com/wp-content/uploads/2020/02/Front-end-Development.jpeg'
+  const defaultImage = 'https://tolustar.com/wp-content/uploads/2020/02/Front-end-Development.jpeg'
   
   const getLevelColor = (level: string) => {
     switch (level.toLowerCase()) {
@@ -51,10 +50,11 @@ export default function CoursesList({ courses }: CoursesListProps) {
               <div className="relative h-56 overflow-hidden">
                 <Image
                   className="group-hover:scale-110 transition-transform duration-700 ease-out"
-                  src={course.imageUrl ?? defaultImage}
+                  src={course.imageUrl || defaultImage}
                   fill
                   priority
-                  alt={course.Namecourse}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  alt={course.Namecourse || 'Course Image'}
                   style={{ objectFit: 'cover' }}
                 />
                 {/* Enhanced gradient overlay */}
