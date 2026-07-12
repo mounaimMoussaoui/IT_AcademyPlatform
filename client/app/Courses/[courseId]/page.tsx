@@ -33,8 +33,8 @@ export default async function CoursePage({ params }: { params: Promise<{ courseI
 
             <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-4">{data_course?.NameCourse}</h1>
             <p className="text-lg text-white mb-6">{data_course?.DescriptionCourse}</p>
-            <Link href={`/Courses/${data_course?._id}/Lesson/${data_course?._id}`}>
-              <Button button="Get Started"  />
+            <Link href={`/Courses/${data_course?.id}/Lesson/${data_course?.id}`}>
+              <Button button="Get Started" w='' type='button' />
             </Link>
           </div>
 
@@ -48,7 +48,7 @@ export default async function CoursePage({ params }: { params: Promise<{ courseI
             <h2 className="text-2xl font-semibold text-red-600 mb-4">What you will learn</h2>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-              {data_course?.learningOutcomes?.map((o: any, i: any) => (
+              {data_course?.learningOutcomes?.map((o, i) => (
                 <li key={i} className="flex items-start">
                   <svg className="h-5 w-5 text-red-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />

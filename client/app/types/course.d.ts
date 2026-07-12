@@ -1,6 +1,6 @@
 export interface CourseData {
   id: string;
-  Namecourse: string;
+  NameCourse: string;
   DescriptionCourse: string;
   shortDescription: string;
   category: string;
@@ -22,6 +22,7 @@ export interface CourseData {
 }
 
 export interface Course {
+  id?: string;
   _id: number;
   NameCourse: string;
   DescriptionCourse: string;
@@ -45,7 +46,7 @@ export interface Course {
   isPublished: boolean;
   videoUrl?: string[];
   text?: string[];
-  quize?: string[];
+  quiz?: string[];
   filters:string,
   modules: Types.ObjectId[]; // References to module documents
   prerequisites: string[];

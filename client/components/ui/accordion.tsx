@@ -5,13 +5,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-<<<<<<< HEAD
 const Accordion = AccordionPrimitive.Root;
-=======
-import { cn } from "../../lib/utils";
-
-const Accordion = AccordionPrimitive.Root
->>>>>>> fadeac95cddd5dafc8550b362a042a357e7515b7
 
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,

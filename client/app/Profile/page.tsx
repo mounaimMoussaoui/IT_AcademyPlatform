@@ -74,12 +74,12 @@ export default async function ProfilePage() {
                 className="text-xl border-2 border-gray-400 rounded-md px-3 py-2 w-full text-black focus:outline-none focus:border-blue-500"
                 placeholder="About me"
               />
-              <Button button="Post" type="submit" />
+              <Button button="Post" type="submit" w=""/>
             </div>
 
             {user.role === "admin" && (
-              <Link href="/Adminpage">
-                <Button button="Admin Panel" type="button" />
+              <Link href="/AdminPage">
+                <Button button="Admin Panel" type="button" w="" />
               </Link>
             )}
 

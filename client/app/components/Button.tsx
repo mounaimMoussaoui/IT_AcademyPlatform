@@ -4,12 +4,6 @@ import React, { MouseEventHandler, ReactElement, useEffect, useState } from 'rea
 
 // re-define the struct of the button interface 
 interface ButtonProps {
-<<<<<<< HEAD
-  button: string;
-  type?: "button" | "submit" | "reset";
-  disabled?: boolean
-  className?: string
-=======
   button?: string;
   type: "button" | "submit" | "reset" | undefined;
   disabled?: boolean;
@@ -17,7 +11,6 @@ interface ButtonProps {
   w: string;
   children?: ReactElement;
   handleClick?: MouseEventHandler;
->>>>>>> MNchanges
 }
 
 function Button(props: ButtonProps) {
@@ -35,12 +28,9 @@ useEffect(() => {
         className={`bg-red-700 w-${props.w} hover:bg-red-800 rounded-md transition 
                     ${props.disabled ? 'opacity-50 cursor-not-allowed' : ''} ${styling}`
                   }
-<<<<<<< HEAD
         type={props.type || "button"}
-=======
-        type={props.type}
+
         onClick={props.handleClick}
->>>>>>> MNchanges
       >
         {props.children}
         {props.button}

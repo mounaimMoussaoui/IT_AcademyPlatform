@@ -1,16 +1,26 @@
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
-import type { NextAuthOptions } from "next-auth";
+// import type { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import {jwtDecode} from "jwt-decode";
 
-declare module "next-auth" {
-  interface User {
+
+// interface IUser {
+//     role: string;
+//     _id?: string;
+//     token?: string;
+//   }
+
+  interface iToken {
+    id: string;
+    name: string;
+    email: string;
     role: string;
-    _id?: string;
-    token?: string;
+    token: string;
+    picture?: string;
   }
-  interface Session {
+
+interface ISession {
     user: {
       id: string;
       name: string ;
@@ -21,10 +31,14 @@ declare module "next-auth" {
       plan:string;
       token:string;
     }
-  }
 }
 
-export const authOptions: NextAuthOptions = {
+// declare module "next-auth" {
+//   interface User extends IUser {}
+//   interface Session extends ISession {}
+// }
+
+export const authOptions /*: NextAuthOptions*/ = {
   // adapter: MongoDBAdapter(client),
   providers: [
     Credentials({
@@ -114,7 +128,9 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+
+
+    async jwt({ token, user }: { token: iToken; user?: ISession['user'] }) {
       if (user) {
         token.id = user.id;
         token.name = user.name;
@@ -125,7 +141,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: { session: ISession; token: iToken}) {
       session.user = {
         id: token.id as string,
         name: token.name as string,
